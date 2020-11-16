@@ -16,12 +16,4 @@ public class Main {
         writer.setInputFile("D:\\write.xls");
         writer.writeFile();
     }
-
-    @Test
-    public void modify() throws IOException {
-        ModifyText modifier = new ModifyText();
-        modifier.setInputFile("D:\\write.xls");
-        modifier.setRequested("Bottle");
-        modifier.modify();
-    }
 }

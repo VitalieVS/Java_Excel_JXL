@@ -15,7 +15,6 @@ public class ReadFile {
             w = Workbook.getWorkbook(inputWorkbook);
             // Get first sheet
             Sheet sheet = w.getSheet(0);
-            // Loop over first 10 column and lines
             for (int j = 0; j < sheet.getColumns(); j++) {
                 for (int i = 0; i < sheet.getRows(); i++) {
                     Cell cell = sheet.getCell(j, i);

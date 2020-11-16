@@ -3,13 +3,11 @@ import jxl.write.Label;
 import jxl.write.WritableCell;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
-
 import java.io.File;
-import java.io.IOException;
 
 public class WriteFile {
     private String inputFile;
-    public void writeFile() throws IOException {
+    public void writeFile() {
         try {
             WritableWorkbook wb = Workbook.createWorkbook(new File(inputFile));
             WritableSheet sheet = wb.createSheet("Sheet1",0);
