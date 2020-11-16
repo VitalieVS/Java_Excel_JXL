@@ -3,6 +3,8 @@ import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import jxl.write.*;
+import jxl.write.biff.RowsExceededException;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,34 +14,27 @@ public class ModifyText {
     private String inputFile;
 
     public void modify() throws IOException {
-        File inputWorkbook = new File(inputFile);
-        Workbook w;
         try {
-            w = Workbook.getWorkbook(inputWorkbook);
-            Sheet sheet = w.getSheet(0);
+            WritableWorkbook w = Workbook.createWorkbook(new File(requested));
+           // WritableSheet sheet = (WritableSheet) w.getSheet(0);
+            System.out.println(w.getSheet("Sheet1"));
+            WritableSheet sheet = w.getSheet(0);
 
             for (int j = 0; j < sheet.getColumns(); j++) {
                 for (int i = 0; i < sheet.getRows(); i++) {
-                    Cell cell = sheet.findCell(requested);
-                    //cell.
-
+                    Cell cell = sheet.getCell(j, i);
+                    if (cell.getContents().equals(requested)) {
+                        WritableCell replaceWith = new Label(j, i,"lala");
+                        sheet.addCell(replaceWith);
+                        w.write();
+                    }
                 }
             }
-
-            Cell cell = sheet.findCell(requested);
-            System.out.println(cell);
-            System.out.println(cell.getRow());
-            System.out.println(cell.getRow());
-
-            } catch (BiffException biffException) {
+            w.close();
+            } catch (WriteException biffException) {
             biffException.printStackTrace();
         }
     }
-
-
-
-
-
 
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
