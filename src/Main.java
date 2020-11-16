@@ -11,7 +11,6 @@ import java.io.IOException;
 
 
 public class Main {
-    private String inputFile;
     @Test
     public void excelFile() throws IOException, WriteException {
         ReadFile reader = new ReadFile();
